@@ -1,4 +1,5 @@
 import struct
+from socket import socket
 
 
 def packByteData(originStr):
@@ -34,3 +35,13 @@ def packAsciiData(originStr):
 
 def unpackData(originData):
     pass
+
+if __name__ == '__main__':
+    v = 1 << 1 ^ 1
+    print v
+    s = '00'+str(v)
+    s = s[-2:]
+    rlt = packByteData(s)
+    sock = socket()
+    sock.connect(('172.16.1.133', 8711))
+    sock.send(rlt)
